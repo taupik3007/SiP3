@@ -1,13 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MajorController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/coba', function () {
-    dd(4.2);
+    // dd(4.2);
     return view('master.main');
 
     
@@ -24,3 +26,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+Route::get('/major', [MajorController::class, 'index'])->name('major');
+
+
