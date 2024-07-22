@@ -31,5 +31,15 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/major', [MajorController::class, 'index'])->name('major');
+Route::get('/major/create', [MajorController::class, 'create'])->name('major.create');
+Route::post('/major/create', [MajorController::class, 'store'])->name('major.store');
+Route::get('/major/{id}/edit', [MajorController::class, 'edit'])->name('major.edit');
+Route::post('/major/{id}/edit', [MajorController::class, 'update'])->name('major.update');
+Route::delete('/major/{id}/destroy', [MajorController::class, 'destroy'])->name('major.update');
+
+
+
+
+
 
 

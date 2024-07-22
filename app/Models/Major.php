@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class major extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes ;
     protected $primaryKey = 'mjr_id';
     protected $guarded = [];
 

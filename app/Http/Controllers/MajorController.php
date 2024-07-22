@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\major;
+use App\Models\Major;
+use App\Models\Classes;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+
 
 class MajorController extends Controller
 {
@@ -13,6 +17,11 @@ class MajorController extends Controller
     public function index()
     {
         $major = Major::all();
+
+        $title = 'yakin Hapus Jurusan!';
+        $text = "Kamu yakin untuk menghapus jurusan ini?";
+        confirmDelete($title, $text);
+        
         // dd($major);
         return view('major.index',compact(['major']));
     }
@@ -22,7 +31,7 @@ class MajorController extends Controller
      */
     public function create()
     {
-        //
+        return view('major.create');
     }
 
     /**
@@ -30,7 +39,26 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'mjr_name' => 'required'
+        ],[
+            'required' => 'harus di isi'
+        ]);
+
+        $majorCheck = Major::where('mjr_name',$request->mjr_name)->first();
+        // dd($majorCheck);
+        if($majorCheck){
+            Alert::error('Gagal Menambah', 'Jurusan Sudah terdaftar');
+            return redirect('/major');
+        }
+            $majroCreate = Major::create([
+                'mjr_name' => $request->mjr_name,
+                'mjr_created_by'=> Auth::user()->usr_id
+            ]);
+            Alert::success('berhasil Menambah', 'Jurusan Berhasi Ditambah');
+            return redirect('/major');
+
+
     }
 
     /**
@@ -38,7 +66,7 @@ class MajorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -46,7 +74,9 @@ class MajorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $major = Major::findOrFail($id);
+        // dd($major);
+        return view('major.edit',compact(['major','id']));
     }
 
     /**
@@ -54,7 +84,27 @@ class MajorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'mjr_name' => 'required'
+        ],[
+            'required' => 'harus di isi'
+        ]);
+
+        $majorCheck = Major::where('mjr_name',$request->mjr_name)->where('mjr_id','!=',$id)->first();
+        // dd($majorCheck);
+        if($majorCheck){
+            Alert::error('Gagal Mengubah', 'Jurusan Sudah terdaftar');
+            return redirect('/major');
+        }
+            $majroUpdate = Major::findOrFail($id)->update([
+                'mjr_name' => $request->mjr_name,
+                'mjr_updated_by'=> Auth::user()->usr_id
+            ]);
+            Alert::success('berhasil Mengubah', 'Jurusan Berhasil Diubah');
+            return redirect('/major');
+
+
+    
     }
 
     /**
@@ -62,6 +112,17 @@ class MajorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $classCheck = Classes::where('cls_major_id',$id)->first();
+        if($classCheck){
+            Alert::error('Gagal Menghapus', 'Masih ada Kelas yang terkait Ke Jurusan');
+            return redirect('/major');
+        }
+        $majorUpdate = Major::findOrFail($id)->update([
+           
+            'mjr_deleted_by'=> Auth::user()->usr_id
+        ]);
+        $majorDelete= Major::findOrFail($id)->delete();
+        Alert::success('berhasil Menghapus', 'Jurusan Berhasil Dihapus');
+        return redirect('/major');
     }
 }
