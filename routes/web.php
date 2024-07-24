@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\ClassController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,12 @@ Route::get('/major/{id}/edit', [MajorController::class, 'edit'])->name('major.ed
 Route::post('/major/{id}/edit', [MajorController::class, 'update'])->name('major.update');
 Route::delete('/major/{id}/destroy', [MajorController::class, 'destroy'])->name('major.update');
 
+Route::get('/class', [ClassController::class, 'index'])->name('class');
+Route::get('/class/create', [ClassController::class, 'create'])->name('class.create');
+Route::post('/class/create', [ClassController::class, 'store'])->name('class.store');
+Route::get('/class/{id}/edit', [ClassController::class, 'edit'])->name('class.edit');
+Route::post('/class/{id}/edit', [ClassController::class, 'update'])->name('class.update');
+Route::delete('/class/{id}/destroy', [ClassController::class, 'destroy'])->name('class.update');
 
 
 
