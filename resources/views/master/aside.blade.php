@@ -55,7 +55,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/violation" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            kelola Pelanggaran 
 
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
