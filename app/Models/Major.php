@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+
 class major extends Model
 {
     use HasFactory, SoftDeletes ;
@@ -16,4 +17,6 @@ class major extends Model
     const CREATED_AT = 'mjr_created_at';
     const UPDATED_AT = 'mjr_updated_at';
     const DELETED_AT = 'mjr_deleted_at';
+
+    
 }

@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $no + 1 }}</td>
                             <td>{{ $class->cls_level }}</td>
-                            <td>{{ $class->cls_major_id }}</td>
+                            <td>{{ $class->cls_major->mjr_name }}</td>
                             <td>{{ $class->cls_number }}</td>
                             <td>
                                 <a href="/class/{{$class->cls_id}}/edit" class="btn btn-primary">Edit</a>

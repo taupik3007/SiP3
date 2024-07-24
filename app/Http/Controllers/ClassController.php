@@ -37,13 +37,23 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
+
+        $classCheck = Classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->mjr_id)->where('cls_number',$request->cls_number)->first();
+        // dd($classCheck);
+        if($classCheck){
+            Alert::error('Gagal Menambah', 'kelas Sudah terdaftar');
+            return redirect('/class');
+        }
+
+
         $class = Classes::create([
             'cls_level'     => $request->cls_level,
             'cls_major_id'  => $request->mjr_id,
-            'cls_number'    => $request->cls_number
+            'cls_number'    => $request->cls_number,
+            'cls_created_by'=> Auth::user()->usr_id
         ]);
 
-            Alert::success('berhasil Menambah', 'Jurusan Berhasi Ditambah');
+            Alert::success('berhasil Menambah', 'Jurusan Berhasil Ditambah');
             return redirect('/class');
 
 
@@ -64,7 +74,8 @@ class ClassController extends Controller
     {   
         
         $class = Classes::findOrFail($id);
-        $major = Major::all();
+        $major = Major::where('mjr_id','!=',$class->cls_major_id)->get();
+        // dd($major);
         return view('class.edit',compact(['class','id', 'major']));
     }
 
@@ -74,6 +85,11 @@ class ClassController extends Controller
     public function update(Request $request, string $id)
     {
         $major = Major::all();
+        $classCheck = Classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->mjr_id)->where('cls_number',$request->cls_number)->where('cls_id','!=',$id)->first();
+        if($classCheck){
+            Alert::error('Gagal Menagubah', 'kelas Sudah terdaftar');
+            return redirect('/class');
+        }
         $request->validate([
             'cls_number' => 'required'
         ],[
@@ -98,7 +114,14 @@ class ClassController extends Controller
      */
     public function destroy(string $id)
     {
-        $classDelete= Classes::findOrFail($id)->delete();
+
+        
+        $classDelete= Classes::findOrFail($id);
+        $classDelete->cls_deleted_by = Auth::user()->usr_id;
+        $classDelete->save();
+        $classDelete->delete();
+
+        
         Alert::success('berhasil Menghapus', 'Kelas Berhasil Dihapus');
         return redirect('/class');
     }
