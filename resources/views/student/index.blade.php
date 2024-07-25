@@ -16,7 +16,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Pelanggaran</th>
+                        <th>Nama Siswa</th>
+                        <th>kelas</th>
                         <th>Jumlah Poin</th>
                         <th>Aksi</th>
 
@@ -26,8 +27,9 @@
                     @foreach ($student as $no => $student)
                         <tr>
                             <td>{{ $no + 1 }}</td>
-                            <td>{{ $student->vlt_name }}</td>
-                            <td>{{ $student->vlt_point }}</td>
+                            <td>{{ $student->std_name }}</td>
+                            <td>{{ $student->cls_level." ".$student->mjr_name." ".$student->cls_number }}</td>
+                            <td></td>
                             <td>
                                 <a href="/student/{{$student->vlt_id}}/edit" class="btn btn-primary">Edit</a>
                                 <a href="/student/{{$student->vlt_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Hapus</a>
@@ -42,7 +44,8 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Pelanggaran</th>
+                        <th>Nama Siswa</th>
+                        <th>kelas</th>
                         <th>Jumlah Poin</th>
                         <th>Aksi</th>
                     </tr>

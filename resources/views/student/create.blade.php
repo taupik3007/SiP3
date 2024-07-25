@@ -6,67 +6,50 @@
     Tambah Kelas
 @endsection
 @section('content')
-    
-        <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Quick Example</h3>
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form method="POST" action="">
-                @csrf
-                <div class="card-body">
-                <div class="form-group">
-                            <label for="Select" class="form-label">Tingkatan Kelas</label>
-                            <br>
-                            <select id="Select" name="cls_level" class="form-control" required>
-                            <option hidden value="">Pilih Tingkatan Kelas</option>
-                                <option value="X">X</option>
-                                <option value="XI">XI</option>
-                                <option value="XII">XII</option>
-                            </select>
-                            @error('cls_level')
-                                <div id="cls_id" class="form-text">{{ $message }}</div>
-                            @enderror
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Quick Example</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form method="POST" action="">
+            @csrf
+            <div class="card-body">
 
-                        </div>
 
-                        <form method="post" action="">
-                        <div class="mb-3">
-                            <label for="Select" class="form-label">Kelas</label>
-                            <br>
-                            <select id="Select" name="cls_id" class="form-control" required>
-                            <option hidden  value="">Pilih kelas</option>
-                            @foreach ($class as $class)
-                              <option value="{{ $class->cls_id }}">{{ $class->mjr_name }}</option>
+                <form method="post" action="">
+                    @csrf
+
+                    <div class="mb-3">
+                        <label for="crp_name" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="std_name" name="std_name"
+                            aria-describedby="std_name" required>
+                        @error('std_name')
+                            <div id="std_name" class="form-text">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Select" class="form-label">Kelas</label>
+                        <br>
+                        <select id="Select" name="cls_id" class="form-control" required>
+                            <option hidden value="">Pilih kelas</option>
+                            @foreach ($classes as $class)
+                                <option value="{{ $class->cls_id }}">{{ $class->cls_level." ".$class->cls_major->mjr_name." ".$class->cls_number }}</option>
                             @endforeach
-                            </select>
-                            @error('cls_level')
-                                <div id="cls_id" class="form-text">{{ $message }}</div>
-                            @enderror
+                        </select>
+                        @error('cls_level')
+                            <div id="cls_id" class="form-text">{{ $message }}</div>
+                        @enderror
 
-                        </div>
+                    </div>
+            </div>
+            <!-- /.card-body -->
 
-                        <div class="mb-3">
-                            <label for="crp_name" class="form-label">Nomor Kelas</label>
-                            <input type="number" class="form-control" id="cls_number" name="cls_number"
-                                aria-describedby="cls_number" required>
-                            @error('cls_number')
-                                <div id="cls_id" class="form-text">{{ $message }}</div>
-                            @enderror
-
-</div>
-                        </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
+            <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
-          
-
-    
+            </div>
+        </form>
+    </div>
 @endsection
-
-

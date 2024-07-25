@@ -15,7 +15,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::all();
+        $student =  Student::join('classes','students.std_classes_id','=','classes.cls_id')
+                    ->join('majors','cls_major_id','=','majors.mjr_id')->get();
+        // dd($student);
 
         $title = 'Yakin Hapus Siswa!';
         $text = "Kamu yakin untuk menghapus Siswa ini?";
@@ -30,8 +32,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $student = Student::all();
-        return view('student.create', compact('major'));
+        $classes = Classes::all();
+        // dd($classes);
+        return view('student.create', compact('classes'));
     }
 
     /**
@@ -39,24 +42,16 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'mjr_name' => 'required'
-        ],[
-            'required' => 'harus di isi'
-        ]);
+      
 
-        $majorCheck = Major::where('mjr_name',$request->mjr_name)->first();
-        // dd($majorCheck);
-        if($majorCheck){
-            Alert::error('Gagal Menambah', 'Jurusan Sudah terdaftar');
-            return redirect('/major');
-        }
-            $majroCreate = Major::create([
-                'mjr_name' => $request->mjr_name,
-                'mjr_created_by'=> Auth::user()->usr_id
+       
+            $majroCreate = Student::create([
+                'std_name' => $request->std_name,
+                'std_classes_id' => $request->cls_id,
+                'std_created_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Menambah', 'Jurusan Berhasi Ditambah');
-            return redirect('/major');
+            Alert::success('Berhasil Menambah', 'Siswa Berhasi Ditambah');
+            return redirect('/Student');
 
 
     }
