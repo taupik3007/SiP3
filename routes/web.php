@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ViolationController;
+use App\Http\Controllers\StudentController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,13 @@ Route::post('/violation/create', [ViolationController::class, 'store'])->name('v
 Route::get('/violation/{id}/edit', [ViolationController::class, 'edit'])->name('violation.edit');
 Route::post('/violation/{id}/edit', [ViolationController::class, 'update'])->name('violation.update');
 Route::delete('/violation/{id}/destroy', [ViolationController::class, 'destroy'])->name('violation.update');
+
+Route::get('/student', [StudentController::class, 'index'])->name('student');
+Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
+Route::post('/student/create', [StudentController::class, 'store'])->name('student.store');
+Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
+Route::post('/student/{id}/edit', [StudentController::class, 'update'])->name('student.update');
+Route::delete('/student/{id}/destroy', [StudentController::class, 'destroy'])->name('student.update');
 
 
 

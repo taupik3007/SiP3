@@ -64,6 +64,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/student" class="nav-link">
+                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <p>
+                            kelola Siswa 
+
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
