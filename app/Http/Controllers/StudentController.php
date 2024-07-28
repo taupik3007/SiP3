@@ -41,19 +41,14 @@ class StudentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-      
-
-       
+    { 
             $majroCreate = Student::create([
                 'std_name' => $request->std_name,
                 'std_classes_id' => $request->cls_id,
                 'std_created_by'=> Auth::user()->usr_id
             ]);
             Alert::success('Berhasil Menambah', 'Siswa Berhasi Ditambah');
-            return redirect('/Student');
-
-
+            return redirect('/student');
     }
 
     /**
@@ -69,9 +64,11 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        $major = Major::findOrFail($id);
+        $student = Student::findOrFail($id);
+        $classes = Classes::where('cls_id','!=',$student->std_classes_id)->get();   
         // dd($major);
-        return view('major.edit',compact(['major','id']));
+        return view('student.edit',compact(['student','id', 'classes']));
+
     }
 
     /**

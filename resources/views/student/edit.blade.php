@@ -1,9 +1,9 @@
 @extends('master.main')
 @section('title')
-    SiP3 | Siswa
+    SiP3 | Kelas
 @endsection
 @section('sub-title')
-    Tambah Siswa
+    Edit Kelas
 @endsection
 @section('content')
     <div class="card card-primary">
@@ -15,28 +15,26 @@
         <form method="POST" action="">
             @csrf
             <div class="card-body">
+                <div class="form-group">
+                <label for="major">Nama Siswa</label>
+                  <input type="text" class="form-control" name="std_name" value="{{$student->std_name}}" id="student" placeholder="Nama Siswa">
+                  @error('student_name')
+                  <p class="text-danger">{{$message}}</p>
+                      
+                  @enderror
 
+                </div>
 
                 <form method="post" action="">
-                    @csrf
-
-                    <div class="mb-3">
-                        <label for="crp_name" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="std_name" name="std_name"
-                            aria-describedby="std_name" required>
-                        @error('std_name')
-                            <div id="std_name" class="form-text">{{ $message }}</div>
-                        @enderror
-
-                    </div>
-
                     <div class="mb-3">
                         <label for="Select" class="form-label">Kelas</label>
                         <br>
-                        <select id="Select" name="cls_id" class="form-control" required>
-                            <option hidden value="">Pilih kelas</option>
+                        <select id="Select" name="cls_id" class="form-control" required value="{{ $student->std_classes_id }}"
+                            id="classes" placeholder="Kelas">
+                            <option  value="{{ $student->std_classes_id }}" id="class">
+                            {{ $classes->cls_level." ".$classes->cls_major->mjr_name." ".$classes->cls_number }}</option>
                             @foreach ($classes as $class)
-                                <option value="{{ $class->cls_id }}">{{ $class->cls_level." ".$class->cls_major->mjr_name." ".$class->cls_number }}</option>
+                            <option value="{{ $classes->cls_id }}">{{ $classes->cls_level." ".$classes->cls_major->mjr_name." ".$classes->cls_number }}</option>
                             @endforeach
                         </select>
                         @error('cls_level')
@@ -45,7 +43,8 @@
 
                     </div>
             </div>
-            <!-- /.card-body -->
+
+
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>

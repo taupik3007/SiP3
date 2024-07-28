@@ -31,8 +31,8 @@
                             <td>{{ $student->cls_level." ".$student->mjr_name." ".$student->cls_number }}</td>
                             <td></td>
                             <td>
-                                <a href="/student/{{$student->vlt_id}}/edit" class="btn btn-primary">Edit</a>
-                                <a href="/student/{{$student->vlt_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Hapus</a>
+                                <a href="/student/{{$student->std_id}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="/student/{{$student->std_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Hapus</a>
 
 
                             </td>
