@@ -29,12 +29,12 @@
                     <div class="mb-3">
                         <label for="Select" class="form-label">Kelas</label>
                         <br>
-                        <select id="Select" name="cls_id" class="form-control" required value="{{ $student->std_classes_id }}"
+                        <select id="Select" name="cls_id" class="form-control" required 
                             id="classes" placeholder="Kelas">
-                            <option  value="{{ $student->std_classes_id }}" id="class">
-                            {{ $classes->cls_level." ".$classes->cls_major->mjr_name." ".$classes->cls_number }}</option>
+                            <option  value="{{$student->std_classes_id}}" id="class">
+                            {{ $student->cls_level." ".$student->mjr_name." ".$student->cls_number }}</option>
                             @foreach ($classes as $class)
-                            <option value="{{ $classes->cls_id }}">{{ $classes->cls_level." ".$classes->cls_major->mjr_name." ".$classes->cls_number }}</option>
+                            <option value="{{ $class->cls_id }}">{{ $class->cls_level." ".$class->cls_major->mjr_name." ".$class->cls_number }}</option>
                             @endforeach
                         </select>
                         @error('cls_level')

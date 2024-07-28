@@ -6,7 +6,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ViolationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -68,6 +68,11 @@ Route::post('/user/create', [UserController::class, 'store'])->name('user.store'
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::post('/user/{id}/edit', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{id}/destroy', [UserController::class, 'destroy'])->name('user.update');
+
+
+Route::get('/home', [homeController::class, 'index'])->name('home');
+
+
 
 
 
