@@ -18,7 +18,7 @@ class ViolationController extends Controller
         $violation = Violation::all();
 
         $title = 'Yakin Hapus Pelanggaran!';
-        $text = "Kamu yakin untuk menghapus pelanggaran ini?";
+        $text = "Kamu Yakin Untuk Menghapus Pelanggaran Ini?";
         confirmDelete($title, $text);
         
         // dd($major);
@@ -48,7 +48,7 @@ class ViolationController extends Controller
         $violationCheck = Violation::where('vlt_name',$request->vlt_name)->first();
         // dd($majorCheck);
         if($violationCheck){
-            Alert::error('Gagal Menambah', 'Pelanggaran Sudah terdaftar');
+            Alert::error('Gagal Menambah', 'Pelanggaran Sudah Terdaftar');
             return redirect('/violation');
         }
             $violationCreate = Violation::create([
@@ -56,7 +56,7 @@ class ViolationController extends Controller
                 'vlt_point' => $request->vlt_point,
                 'vlt_created_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Menambah', 'Pelanggaran Berhasi Ditambah');
+            Alert::success('Berhasil Menambah', 'Pelanggaran Berhasil Ditambah');
             return redirect('/violation');
 
 
@@ -95,7 +95,7 @@ class ViolationController extends Controller
         $violationCheck = Violation::where('vlt_name',$request->vlt_name)->where('vlt_id','!=',$id)->first();
         // dd($majorCheck);
         if($violationCheck){
-            Alert::error('Gagal Mengubah', 'Pelanggaran Sudah terdaftar');
+            Alert::error('Gagal Mengubah', 'Pelanggaran Sudah Terdaftar');
             return redirect('/violation');
         }
             $violationUpdate = Violation::findOrFail($id)->update([
@@ -103,7 +103,7 @@ class ViolationController extends Controller
                 'vlt_point' => $request->vlt_point,
                 'vlt_updated_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Mengubah', 'Pelanggaran Berhasil Diubah');
+            Alert::success('Berhasil Mengubah', 'Pelanggaran Berhasil Diubah');
             return redirect('/violation');
 
 
@@ -117,7 +117,7 @@ class ViolationController extends Controller
     {
         $violationRecordingCheck = ViolationRecording::where('vlr_violation_id',$id)->first();
         if($violationRecordingCheck){
-            Alert::error('Gagal Menghapus', 'Masih ada PPelaporan yang terkait Ke Pelanggaran');
+            Alert::error('Gagal Menghapus', 'Masih Ada Pelaporan Yang Terkait Ke Pelanggaran');
             return redirect('/major');
         }
         $violationUpdate = Violation::findOrFail($id)->update([
@@ -125,7 +125,7 @@ class ViolationController extends Controller
             'vlt_deleted_by'=> Auth::user()->usr_id
         ]);
         $violationDelete= Violation::findOrFail($id)->delete();
-        Alert::success('berhasil Menghapus', 'Pelanggran Berhasil Dihapus');
+        Alert::success('Berhasil Menghapus', 'Pelanggaran Berhasil Dihapus');
         return redirect('/violation');
     }
 }

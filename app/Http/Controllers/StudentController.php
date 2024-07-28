@@ -26,7 +26,7 @@ class StudentController extends Controller
         // dd($student);
 
         $title = 'Yakin Hapus Siswa!';
-        $text = "Kamu yakin untuk menghapus Siswa ini?";
+        $text = "Kamu Yakin Untuk Menghapus Siswa Ini?";
         confirmDelete($title, $text);
         
         // dd($major);
@@ -53,7 +53,7 @@ class StudentController extends Controller
                 'std_classes_id' => $request->cls_id,
                 'std_created_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('Berhasil Menambah', 'Siswa Berhasi Ditambah');
+            Alert::success('Berhasil Menambah', 'Siswa Berhasil Ditambah');
             return redirect('/student');
     }
 
@@ -116,7 +116,7 @@ class StudentController extends Controller
     {
         $studentDelete = Student::findOrFail($id);
         $studentDelete->delete();
-        Alert::success('berhasil Menghapus', 'Siswa Berhasil Dihapus');
+        Alert::success('Berhasil Menghapus', 'Siswa Berhasil Dihapus');
         return redirect('/student');
     }
 

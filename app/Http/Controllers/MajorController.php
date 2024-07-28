@@ -18,8 +18,8 @@ class MajorController extends Controller
     {
         $major = Major::all();
 
-        $title = 'yakin Hapus Jurusan!';
-        $text = "Kamu yakin untuk menghapus jurusan ini?";
+        $title = 'Yakin Hapus Jurusan!';
+        $text = "Kamu Yakin Untuk Menghapus Jurusan Ini?";
         confirmDelete($title, $text);
         
         // dd($major);
@@ -48,14 +48,14 @@ class MajorController extends Controller
         $majorCheck = Major::where('mjr_name',$request->mjr_name)->first();
         // dd($majorCheck);
         if($majorCheck){
-            Alert::error('Gagal Menambah', 'Jurusan Sudah terdaftar');
+            Alert::error('Gagal Menambah', 'Jurusan Sudah Terdaftar');
             return redirect('/major');
         }
             $majroCreate = Major::create([
                 'mjr_name' => $request->mjr_name,
                 'mjr_created_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Menambah', 'Jurusan Berhasi Ditambah');
+            Alert::success('Berhasil Menambah', 'Jurusan Berhasil Ditambah');
             return redirect('/major');
 
 
@@ -100,7 +100,7 @@ class MajorController extends Controller
                 'mjr_name' => $request->mjr_name,
                 'mjr_updated_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Mengubah', 'Jurusan Berhasil Diubah');
+            Alert::success('Berhasil Mengubah', 'Jurusan Berhasil Diubah');
             return redirect('/major');
 
 
@@ -114,7 +114,7 @@ class MajorController extends Controller
     {
         $classCheck = Classes::where('cls_major_id',$id)->first();
         if($classCheck){
-            Alert::error('Gagal Menghapus', 'Masih ada Kelas yang terkait Ke Jurusan');
+            Alert::error('Gagal Menghapus', 'Masih Ada Kelas Yang Terkait Ke Jurusan');
             return redirect('/major');
         }
         $majorUpdate = Major::findOrFail($id)->update([
@@ -122,7 +122,7 @@ class MajorController extends Controller
             'mjr_deleted_by'=> Auth::user()->usr_id
         ]);
         $majorDelete= Major::findOrFail($id)->delete();
-        Alert::success('berhasil Menghapus', 'Jurusan Berhasil Dihapus');
+        Alert::success('Berhasil Menghapus', 'Jurusan Berhasil Dihapus');
         return redirect('/major');
     }
 }

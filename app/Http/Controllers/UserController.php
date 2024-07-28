@@ -17,7 +17,7 @@ class UserController extends Controller
         $user = User::all();
 
         $title = 'Yakin Hapus User!';
-        $text = "Kamu yakin untuk menghapus user ini?";
+        $text = "Kamu Yakin Untuk Menghapus User Ini?";
         confirmDelete($title, $text);
         
         // dd($major);
@@ -44,7 +44,7 @@ class UserController extends Controller
         $userCheck = User::where('name',$request->name)->first();
         // dd($majorCheck);
         if($userCheck){
-            Alert::error('Gagal Menambah', 'User Sudah terdaftar');
+            Alert::error('Gagal Menambah', 'User Sudah Terdaftar');
             return redirect('/user');
         }
             $userCreate = User::create([
@@ -53,7 +53,7 @@ class UserController extends Controller
                 'password' => $request->password,
                 'usr_created_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Menambah', 'User Berhasi Ditambah');
+            Alert::success('Berhasil Menambah', 'User Berhasil Ditambah');
             return redirect('/user');
     }
      /**
@@ -82,8 +82,8 @@ class UserController extends Controller
         $user = User::all();
         $userCheck = User::where('name',$request->name)->where('usr_id','!=',$id)->first();
         if($userCheck){
-            Alert::error('Gagal Menagubah', 'kelas Sudah terdaftar');
-            return redirect('/userr');
+            Alert::error('Gagal Mengubah', 'kelas Sudah Terdaftar');
+            return redirect('/user');
         }
             // $request->validate([
             //     'cls_number' => 'required'
@@ -96,13 +96,13 @@ class UserController extends Controller
                 'email'  => $request->email,
                 //'usr_updated_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Mengubah', 'User Berhasil Diubah');
+            Alert::success('Berhasil Mengubah', 'User Berhasil Diubah');
             return redirect('/user');
     }
     public function destroy(string $id)
     {
         $userDelete= User::findOrFail($id)->delete();
-        Alert::success('berhasil Menghapus', 'User Berhasil Dihapus');
+        Alert::success('Berhasil Menghapus', 'User Berhasil Dihapus');
         return redirect('/user');
     }
 
