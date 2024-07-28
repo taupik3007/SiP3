@@ -56,7 +56,7 @@ class ViolationController extends Controller
                 'vlt_point' => $request->vlt_point,
                 'vlt_created_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('Berhasil Menambah', 'Pelanggaran Berhasi Ditambah');
+            Alert::success('Berhasil Menambah', 'Pelanggaran Berhasil Ditambah');
             return redirect('/violation');
 
 
