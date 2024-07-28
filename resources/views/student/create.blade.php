@@ -23,7 +23,7 @@
                     <div class="mb-3">
                         <label for="crp_name" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="std_name" name="std_name"
-                            aria-describedby="std_name" required>
+                            aria-describedby="std_name" placeholder="Nama Siswa" required>
                         @error('std_name')
                             <div id="std_name" class="form-text">{{ $message }}</div>
                         @enderror

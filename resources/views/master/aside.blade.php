@@ -73,6 +73,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/user" class="nav-link">
+                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <p>
+                            Kelola Osis
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
