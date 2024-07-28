@@ -17,7 +17,7 @@
                 @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="major">nama Jurusan</label>
+                  <label for="major">Nama Jurusan</label>
                   <input type="text" class="form-control" name="mjr_name" id="major" placeholder="Nama Jurusan">
                   @error('mjr_name')
                   <p class="text-danger">{{$message}}</p>

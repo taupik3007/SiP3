@@ -18,7 +18,7 @@ class ClassController extends Controller
         $class = Classes::all();
         $major = Major::all();
         $title = 'Yakin Hapus Kelas!';
-        $text = "Kamu yakin untuk menghapus kelas ini?";
+        $text = "Kamu Yakin Untuk Menghapus Kelas Ini?";
         confirmDelete($title, $text);
         return view('class.index',compact(['class', 'major']));
     }
@@ -41,7 +41,7 @@ class ClassController extends Controller
         $classCheck = Classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->mjr_id)->where('cls_number',$request->cls_number)->first();
         // dd($classCheck);
         if($classCheck){
-            Alert::error('Gagal Menambah', 'kelas Sudah terdaftar');
+            Alert::error('Gagal Menambah', 'Kelas Sudah Terdaftar');
             return redirect('/class');
         }
 
@@ -53,7 +53,7 @@ class ClassController extends Controller
             'cls_created_by'=> Auth::user()->usr_id
         ]);
 
-            Alert::success('berhasil Menambah', 'Jurusan Berhasil Ditambah');
+            Alert::success('Berhasil Menambah', 'Jurusan Berhasil Ditambah');
             return redirect('/class');
 
 
@@ -87,7 +87,7 @@ class ClassController extends Controller
         $major = Major::all();
         $classCheck = Classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->mjr_id)->where('cls_number',$request->cls_number)->where('cls_id','!=',$id)->first();
         if($classCheck){
-            Alert::error('Gagal Menagubah', 'kelas Sudah terdaftar');
+            Alert::error('Gagal Mengubah', 'Kelas Sudah Terdaftar');
             return redirect('/class');
         }
         $request->validate([
@@ -102,7 +102,7 @@ class ClassController extends Controller
                 'cls_number'    => $request->cls_number,
                 'cls_updated_by'=> Auth::user()->usr_id
             ]);
-            Alert::success('berhasil Mengubah', 'Kelas Berhasil Diubah');
+            Alert::success('Berhasil Mengubah', 'Kelas Berhasil Diubah');
             return redirect('/class');
 
 
@@ -122,7 +122,7 @@ class ClassController extends Controller
         $classDelete->delete();
 
         
-        Alert::success('berhasil Menghapus', 'Kelas Berhasil Dihapus');
+        Alert::success('Berhasil Menghapus', 'Kelas Berhasil Dihapus');
         return redirect('/class');
     }
 }
