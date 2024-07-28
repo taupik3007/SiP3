@@ -29,7 +29,12 @@
                             <td>{{ $no + 1 }}</td>
                             <td>{{ $student->std_name }}</td>
                             <td>{{ $student->cls_level." ".$student->mjr_name." ".$student->cls_number }}</td>
-                            <td></td>
+
+                            @if ($student->point == null)
+                            <td>0</td>
+                            @else 
+                            <td>{{$student->point}}</td>
+                            @endif
                             <td>
                                 <a href="/student/{{$student->std_id}}/edit" class="btn btn-primary">Edit</a>
                                 <a href="/student/{{$student->std_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Hapus</a>

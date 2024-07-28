@@ -15,9 +15,15 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student =  Student::join('classes','students.std_classes_id','=','classes.cls_id')
-                    ->join('majors','cls_major_id','=','majors.mjr_id')->get();
-        // dd($student->std_name);
+        $student =  Student::selectRaw('students.std_name,classes.*,majors.*, sum(violations.vlt_point) as point' )
+                    ->join('classes','students.std_classes_id','=','classes.cls_id')
+                    ->join('majors','cls_major_id','=','majors.mjr_id')
+                    ->leftjoin('violation_records','students.std_id','=','violation_records.vlr_student_id')
+                    ->leftjoin('violations','violation_records.vlr_violation_id','=','violations.vlt_id')
+                    ->groupBy('students.std_id')
+                    // ->sum('')
+                    ->get();
+        // dd($student);
 
         $title = 'Yakin Hapus Siswa!';
         $text = "Kamu yakin untuk menghapus Siswa ini?";

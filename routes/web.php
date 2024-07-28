@@ -7,10 +7,11 @@ use App\Http\Controllers\ViolationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 Route::get('/coba', function () {
     // dd(4.2);
@@ -33,7 +34,7 @@ require __DIR__.'/auth.php';
 
 
 
-
+Route::middleware('auth')->group(function () {
 Route::get('/major', [MajorController::class, 'index'])->name('major');
 Route::get('/major/create', [MajorController::class, 'create'])->name('major.create');
 Route::post('/major/create', [MajorController::class, 'store'])->name('major.store');
@@ -71,6 +72,11 @@ Route::delete('/user/{id}/destroy', [UserController::class, 'destroy'])->name('u
 
 
 Route::get('/home', [homeController::class, 'index'])->name('home');
+Route::get('/report', [ReportController::class, 'index'])->name('report');
+Route::post('/report', [ReportController::class, 'store'])->name('store');
+});
+
+
 
 
 
