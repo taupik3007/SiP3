@@ -17,7 +17,7 @@ class StudentController extends Controller
     {
         $student =  Student::join('classes','students.std_classes_id','=','classes.cls_id')
                     ->join('majors','cls_major_id','=','majors.mjr_id')->get();
-        // dd($student);
+        // dd($student->std_name);
 
         $title = 'Yakin Hapus Siswa!';
         $text = "Kamu yakin untuk menghapus Siswa ini?";
@@ -64,9 +64,12 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::join('classes','students.std_classes_id','=','classes.cls_id')
+        ->join('majors','cls_major_id','=','majors.mjr_id')->where('std_id',$id)->first();
+        
+        // dd($student);
         $classes = Classes::where('cls_id','!=',$student->std_classes_id)->get();   
-        // dd($major);
+        // dd($classes);
         return view('student.edit',compact(['student','id', 'classes']));
 
     }
@@ -77,23 +80,24 @@ class StudentController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'mjr_name' => 'required'
+            'std_name' => 'required',
+            'cls_id' => 'required'
+
         ],[
             'required' => 'harus di isi'
         ]);
 
-        $majorCheck = Major::where('mjr_name',$request->mjr_name)->where('mjr_id','!=',$id)->first();
-        // dd($majorCheck);
-        if($majorCheck){
-            Alert::error('Gagal Mengubah', 'Jurusan Sudah terdaftar');
-            return redirect('/major');
-        }
-            $majroUpdate = Major::findOrFail($id)->update([
-                'mjr_name' => $request->mjr_name,
-                'mjr_updated_by'=> Auth::user()->usr_id
-            ]);
-            Alert::success('berhasil Mengubah', 'Jurusan Berhasil Diubah');
-            return redirect('/major');
+        $studentUpdate = Student::findOrFail($id);
+        $studentUpdate->std_name = $request->std_name;
+        $studentUpdate->std_classes_id = $request->cls_id;
+        $studentUpdate->std_updated_by = Auth::user()->usr_id;
+        $studentUpdate->save();
+        Alert::success('Berhasil Mengubah', 'Siswa Berhasil Diubah');
+            return redirect('/student');
+
+
+
+       
 
 
     
@@ -104,18 +108,10 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        $classCheck = Classes::where('cls_major_id',$id)->first();
-        if($classCheck){
-            Alert::error('Gagal Menghapus', 'Masih ada Kelas yang terkait Ke Jurusan');
-            return redirect('/major');
-        }
-        $majorUpdate = Major::findOrFail($id)->update([
-           
-            'mjr_deleted_by'=> Auth::user()->usr_id
-        ]);
-        $majorDelete= Major::findOrFail($id)->delete();
-        Alert::success('berhasil Menghapus', 'Jurusan Berhasil Dihapus');
-        return redirect('/major');
+        $studentDelete = Student::findOrFail($id);
+        $studentDelete->delete();
+        Alert::success('berhasil Menghapus', 'Siswa Berhasil Dihapus');
+        return redirect('/student');
     }
 
 }
