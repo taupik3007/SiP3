@@ -18,7 +18,7 @@
         <div class="icon">
           <i class="fa-sharp fa-solid fa-pen-to-square"></i>
         </div>
-        <a href="#" class="small-box-footer">Pergi <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="/report" class="small-box-footer">Pergi <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
