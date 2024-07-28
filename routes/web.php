@@ -5,6 +5,8 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ViolationController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\HomeController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +62,11 @@ Route::post('/student/create', [StudentController::class, 'store'])->name('stude
 Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
 Route::post('/student/{id}/edit', [StudentController::class, 'update'])->name('student.update');
 Route::delete('/student/{id}/destroy', [StudentController::class, 'destroy'])->name('student.update');
+
+
+
+Route::get('/home', [homeController::class, 'index'])->name('home');
+
 
 
 
