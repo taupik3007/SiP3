@@ -41,7 +41,7 @@
                     <a href="/major" class="nav-link">
                         <i class="nav-icon fas fa-graduation-cap"></i>
                         <p>
-                            kelola jurusan 
+                            Kelola Jurusan 
 
                         </p>
                     </a>
@@ -50,7 +50,7 @@
                     <a href="/class" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
-                            kelola kelas 
+                            Kelola Kelas 
 
                         </p>
                     </a>
@@ -59,7 +59,7 @@
                     <a href="/violation" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
-                            kelola Pelanggaran 
+                            Kelola Pelanggaran 
 
                         </p>
                     </a>
@@ -68,7 +68,7 @@
                     <a href="/student" class="nav-link">
                         <i class="nav-icon fas fa-graduation-cap"></i>
                         <p>
-                            kelola Siswa 
+                            Kelola Siswa 
 
                         </p>
                     </a>
