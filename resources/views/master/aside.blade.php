@@ -84,6 +84,17 @@
                         </p>
                     </a>
                 </li>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <li class="nav-item">
+                        <button type="submit" class="nav-link">
+                            {{ __('Log Out') }}
+                        </button>
+                           
+                            
+                          
+                    </li>
+                </form>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
