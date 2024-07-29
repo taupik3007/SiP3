@@ -88,7 +88,7 @@
                     @csrf
                     <li class="nav-item">
                         <button type="submit" class="nav-link">
-                            {{ __('Log Out') }}
+                            <i class="fa-solid fa-power-off"></i>
                         </button>
                            
                             
