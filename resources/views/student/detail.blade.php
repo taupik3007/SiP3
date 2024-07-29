@@ -12,36 +12,47 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            <table>
+                <tr>
+                    <td>Nama</td>
+                    <td>:</td>
+                    <td>{{$student->std_name }}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Kelas</td>
+                    <td>:</td>
+                    <td>
+                        
+                        {{ $student->cls_level." ".$student->mjr_name." ".$student->cls_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jumlah Point</td>
+                    <td>:</td>
+                    <td>
+                    {{ $student->point }}
+                    </td>
+                </tr>
+            </table>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Siswa</th>
-                        <th>kelas</th>
-                        <th>Jumlah Poin</th>
-                        <th>Aksi</th>
+                        <th>Pelanggaran</th>
+                        <th>poin</th>
+                        <th>tanggal melanggar</th>
+                        
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($student as $no => $student)
+                    @foreach ($violation as $no => $violation)
                         <tr>
                             <td>{{ $no + 1 }}</td>
-                            <td>{{ $student->std_name }}</td>
-                            <td>{{ $student->cls_level." ".$student->mjr_name." ".$student->cls_number }}</td>
-
-                            @if ($student->point == null)
-                            <td>0</td>
-                            @else 
-                            <td>{{$student->point}}</td>
-                            @endif
-                            <td>
-                                <a href="/student/{{$student->std_id}}/detail" class="btn btn-info">Detail</a>
-                                <a href="/student/{{$student->std_id}}/edit" class="btn btn-primary">Edit</a>
-                                <a href="/student/{{$student->std_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Hapus</a>
-
-
-                            </td>
+                            <td>{{ $violation->vlt_name }}</td>
+                            <td>{{ $violation->vlt_point }}</td>
+                            <td>{{ $violation->vlr_created_at }}</td>   
 
                         </tr>
                     @endforeach
@@ -50,10 +61,9 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Nama Siswa</th>
-                        <th>kelas</th>
-                        <th>Jumlah Poin</th>
-                        <th>Aksi</th>
+                        <th>Pelanggaran</th>
+                        <th>poin</th>
+                        <th>tanggal melanggar</th>
                     </tr>
                 </tfoot>
             </table>
@@ -86,12 +96,7 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": [{
-                    text: 'Tambah Siswa',
-                    action: function(e, dt, button, config) {
-                        window.location = '/student/create';
-                    }
-                }]
+                
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

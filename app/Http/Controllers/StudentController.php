@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Classes;
+use App\Models\Violation;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student =  Student::selectRaw('students.std_name,classes.*,majors.*, sum(violations.vlt_point) as point' )
+        $student =  Student::selectRaw('students.std_name,students.std_id,classes.*,majors.*, sum(violations.vlt_point) as point' )
                     ->join('classes','students.std_classes_id','=','classes.cls_id')
                     ->join('majors','cls_major_id','=','majors.mjr_id')
                     ->leftjoin('violation_records','students.std_id','=','violation_records.vlr_student_id')
@@ -61,8 +62,23 @@ class StudentController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        
+    {   
+        $student = Student::selectRaw('students.std_name,students.std_id,classes.*,majors.*, sum(violations.vlt_point) as point' )
+        ->join('classes','students.std_classes_id','=','classes.cls_id')
+        ->join('majors','cls_major_id','=','majors.mjr_id')
+        ->leftjoin('violation_records','students.std_id','=','violation_records.vlr_student_id')
+        ->leftjoin('violations','violation_records.vlr_violation_id','=','violations.vlt_id')
+        ->groupBy('students.std_id')->where('std_id',$id)
+        // ->sum('')
+        ->first();
+        $violation = Violation::join('violation_records', 'violation_records.vlr_violation_id','=','violations.vlt_id')
+        ->join('students','students.std_id','=','violation_records.vlr_student_id')->where('std_id',$id)
+        ->select('vlt_name','vlr_created_at','vlt_point')
+        ->orderBy('vlr_created_at','desc')
+        ->get();
+        // $violation  = Violation::all();
+        // dd($violation);
+        return view('student.detail',compact(['student','id','violation']));
     }
 
     /**

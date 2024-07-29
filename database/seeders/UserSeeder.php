@@ -20,6 +20,6 @@ class UserSeeder extends Seeder
            
         ]);
         $kesiswaan->assignRole('kesiswaan');
-        $osis->assignRole('osis');
+        // $osis->assignRole('osis');
     }
 }

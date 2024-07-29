@@ -57,6 +57,7 @@ Route::post('/violation/{id}/edit', [ViolationController::class, 'update'])->nam
 Route::delete('/violation/{id}/destroy', [ViolationController::class, 'destroy'])->name('violation.update');
 
 Route::get('/student', [StudentController::class, 'index'])->name('student');
+Route::get('/student/{id}/detail', [StudentController::class, 'show'])->name('student.detail');
 Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
 Route::post('/student/create', [StudentController::class, 'store'])->name('student.store');
 Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
