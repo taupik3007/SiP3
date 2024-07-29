@@ -12,9 +12,9 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table>
-                <tr>
-                    <td>Nama</td>
+            <table class="mb-5" style="width:50%">
+                <tr >
+                    <td style="width: 20%">Nama</td>
                     <td>:</td>
                     <td>{{$student->std_name }}</td>
                     
@@ -35,6 +35,7 @@
                     </td>
                 </tr>
             </table>
+
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>

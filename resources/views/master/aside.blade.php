@@ -1,9 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="/home" class="brand-link">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm4vwkkVo7fvT0vGHZ3P4wdBF_wLsLORSZWg&s" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">SiP3</span>
+        <span class="brand-text font-weight-light">SIP3</span>
     </a>
 
     <!-- Sidebar -->
@@ -11,10 +11,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
@@ -48,7 +48,8 @@
                 </li>
                 <li class="nav-item">
                     <a href="/class" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        {{-- <i class=""></i> --}}
                         <p>
                             Kelola Kelas 
 
@@ -57,7 +58,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="/violation" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
+                        <i class="nav-icon fa-solid fa-circle-exclamation"></i>
                         <p>
                             Kelola Pelanggaran 
 
@@ -66,7 +67,8 @@
                 </li>
                 <li class="nav-item">
                     <a href="/student" class="nav-link">
-                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        
                         <p>
                             Kelola Siswa 
 
@@ -75,7 +77,8 @@
                 </li>
                 <li class="nav-item">
                     <a href="/user" class="nav-link">
-                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <i class="nav-icon fa-solid fa-user-tie"></i>
+                        
                         <p>
                             Kelola Osis
                         </p>
