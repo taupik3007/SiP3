@@ -82,26 +82,31 @@
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script>
         $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": [{
-                    text: 'Tambah Siswa',
-                    action: function(e, dt, button, config) {
-                        window.location = '/student/create';
-                    }
-                }]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
+    $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": [{
+            text: 'Tambah Siswa',
+            action: function(e, dt, button, config) {
+                window.location = '/student/create';
+            }
+        }, {
+            text: 'Import Siswa',
+            action: function(e, dt, button, config) {
+                window.location = '{{ route('students.import.form') }}';
+            }
+        }]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
     </script>
 @endpush
