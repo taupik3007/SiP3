@@ -75,6 +75,10 @@ Route::delete('/user/{id}/destroy', [UserController::class, 'destroy'])->name('u
 Route::get('/home', [homeController::class, 'index'])->name('home');
 Route::get('/report', [ReportController::class, 'index'])->name('report');
 Route::post('/report', [ReportController::class, 'store'])->name('store');
+
+Route::get('/student/import', [StudentController::class, 'importForm'])->name('students.import.form');
+Route::post('/student/import', [StudentController::class, 'import'])->name('students.import');
+Route::get('/student/import/template', [StudentController::class, 'downloadTemplate'])->name('students.import.template');
 });
 
 
